@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.9.6-eclipse-temurin-17'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     environment {
         IMAGE_NAME = "mycompany/myapp"
@@ -7,7 +12,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -40,7 +44,6 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Running Trivy scan...'
-                // sh 'trivy image $IMAGE_NAME:$IMAGE_TAG'
             }
         }
 
@@ -53,7 +56,6 @@ pipeline {
         stage('Deploy to Dev Server') {
             steps {
                 echo 'Deploying container...'
-                // ssh commands or kubectl apply
             }
         }
     }
