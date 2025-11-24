@@ -47,7 +47,6 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 echo 'skip'
-                }
             }
         }
 
