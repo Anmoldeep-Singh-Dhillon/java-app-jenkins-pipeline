@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.6-eclipse-temurin-17'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
 
     environment {
         IMAGE_NAME = "mycompany/myapp"
@@ -12,6 +7,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -49,7 +45,7 @@ pipeline {
 
         stage('Push to Registry') {
             steps {
-                echo 'skip'
+                echo 'Skipping push for now'
             }
         }
 
