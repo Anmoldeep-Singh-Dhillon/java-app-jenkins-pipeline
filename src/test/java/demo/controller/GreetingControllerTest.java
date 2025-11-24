@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package demo.controller;
 
 import com.example.demo.service.GreetingService;
 import org.junit.jupiter.api.Test;
